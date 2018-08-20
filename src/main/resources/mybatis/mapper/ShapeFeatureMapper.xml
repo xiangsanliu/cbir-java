@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiang.study.cbirjava.dao.mapper.ShapeFeatureMapper">
+
+    <insert id="batchInsert">
+        insert into shape_feature (path, feature0, feature1, feature2, feature3, feature4, feature5, feature6)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.path},
+            #{item.feature0},
+            #{item.feature1},
+            #{item.feature2},
+            #{item.feature3},
+            #{item.feature4},
+            #{item.feature5},
+            #{item.feature6}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectOne" resultType="com.xiang.study.cbirjava.dao.entity.ShapeFeature">
+        select
+            path,
+            feature0,
+            feature1,
+            feature2,
+            feature3,
+            feature4,
+            feature5,
+            feature6
+        from shape_feature
+        where id = #{id}
+        limit 1
+    </select>
+
+    <select id="listAll" resultType="com.xiang.study.cbirjava.dao.entity.ShapeFeature">
+        select
+            path,
+            feature0,
+            feature1,
+            feature2,
+            feature3,
+            feature4,
+            feature5,
+            feature6
+        from shape_feature
+    </select>
+
+</mapper>

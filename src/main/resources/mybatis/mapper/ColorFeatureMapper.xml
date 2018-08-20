@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiang.study.cbirjava.dao.mapper.ColorFeatureMapper">
+
+    <insert id="batchInsert">
+        insert into color_feature(path, h_m1, h_m2, h_m3, s_m1, s_m2, s_m3, i_m1, i_m2, i_m3)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.path}, #{item.hM1}, #{item.hM2}, #{item.hM3}, #{item.sM1}, #{item.sM2}, #{item.sM3},
+            #{item.iM1}, #{item.iM2}, #{item.iM3})
+        </foreach>
+    </insert>
+    <select id="selectOne" resultType="com.xiang.study.cbirjava.dao.entity.ColorFeature">
+        select path,
+               h_m1 as hM1,
+               h_m2 as hM2,
+               h_m3 as hM3,
+               s_m1 as sM1,
+               s_m2 as sM2,
+               s_m3 as sM3,
+               i_m1 as iM1,
+               i_m2 as iM2,
+               i_m3 as iM3
+        from color_feature
+        where id = #{id}
+        limit 1
+    </select>
+    <select id="listAll" resultType="com.xiang.study.cbirjava.dao.entity.ColorFeature">
+        select path,
+               h_m1 as hM1,
+               h_m2 as hM2,
+               h_m3 as hM3,
+               s_m1 as sM1,
+               s_m2 as sM2,
+               s_m3 as sM3,
+               i_m1 as iM1,
+               i_m2 as iM2,
+               i_m3 as iM3
+        from color_feature
+        #         limit 100
+    </select>
+    <select id="listPath" resultType="java.lang.String">
+        select path
+        from color_feature;
+    </select>
+</mapper>
